@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Trivy
         run: |
-          trivy image sudha --format csv > image-trivy-scan.csv
+          trivy image sudha > image-trivy-scan.csv
           cat image-trivy-scan.csv
 
       - name: Install Docker Scout
