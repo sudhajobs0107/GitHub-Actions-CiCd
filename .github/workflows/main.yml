@@ -32,10 +32,10 @@ jobs:
           docker scout cves sudha > image-cves-scan.csv
           cat image-cves-scan.csv
           
-      - name: Checking Image Overview
+      - name: Checking Image Quickview
         run: |
-          docker scout quickview sudha > image-scan-overview.csv
-          cat image-scan-overview.csv
+          docker scout quickview sudha > image-scan-quickview.csv
+          cat image-scan-quickview.csv
 
       - name: Install Trivy
         run: |
@@ -47,7 +47,7 @@ jobs:
           clear
           trivy --version
 
-      - name: Run Trivy
+      - name: Run Trivy Scan
         run: |
           trivy image sudha > image-trivy-scan.csv
           cat image-trivy-scan.csv
@@ -63,11 +63,9 @@ jobs:
           body: >
             Hello Dosto 😎,
 
-
-            Please find attached the CVE report and overview for the Docker
-            image.
+            Please find attached the CVE report, Trivy scan and overview of the Docker image.
             Warm regards,
             Sudha Yadav
           to: archanakaushish@gmail.com
           from: '${{ secrets.EMAIL_USERNAME }}'
-          attachments: image-cves-scan.csv,image-scan-overview.csv,image-trivy-scan.csv
+          attachments: image-cves-scan.csv,image-scan-quickview.csv,image-trivy-scan.csv
