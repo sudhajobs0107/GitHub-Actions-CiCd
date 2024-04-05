@@ -51,7 +51,12 @@ jobs:
         run: |
           trivy image sudha > image-trivy-scan.csv
           cat image-trivy-scan.csv
-         
+
+      - name: Push Docker Image to Docker Hub
+        run: |
+          docker tag sudha "${{ secrets.DOCKER_USERNAME }}"/sudha
+          docker push "${{ secrets.DOCKER_USERNAME }}"/sudha
+      
       - name: Send CVE Report via Email
         uses: dawidd6/action-send-mail@v2
         with:
